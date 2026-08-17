@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*~
+
+# Node
+node_modules/
+dist/
+coverage/
+.npm/
+*.tgz
+
+# Rust
+target/
+Cargo.lock
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
