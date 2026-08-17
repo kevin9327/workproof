@@ -1,0 +1,10 @@
+{
+  "diff": {
+    "files": [
+      {
+        "path": "src/fixed.js",
+        "op": "modify"
+      }
+    ]
+  }
+}

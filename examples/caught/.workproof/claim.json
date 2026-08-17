@@ -1,0 +1,18 @@
+{
+  "tests": {
+    "command": ["node", "--test", "demo.test.js"],
+    "expect": "pass"
+  },
+  "diff": {
+    "files": [
+      {
+        "path": "src/fixed.js",
+        "op": "modify"
+      }
+    ]
+  },
+  "screenshot": {
+    "path": "shots/login.png",
+    "required": false
+  }
+}

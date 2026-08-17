@@ -1,0 +1,6 @@
+{
+  "tests": {
+    "command": ["node", "--test", "demo.test.js"],
+    "expect": "pass"
+  }
+}

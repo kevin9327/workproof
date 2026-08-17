@@ -1,0 +1,11 @@
+{
+  "diff": {
+    "files": [
+      {
+        "path": "src/app.js",
+        "op": "modify",
+        "contains": "hello from workproof"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+export { parseArgs, main } from "./cli.js";
+export { runWorkproof } from "./run.js";
+export { loadClaim, findClaimPath } from "./claim.js";
+export { checkTests, parseTestOutput } from "./checks/tests.js";
+export { checkDiff } from "./checks/diff.js";
+export { checkScreenshot } from "./checks/screenshot.js";
+export { checkReceipt, writeReceipt, readReceipt } from "./checks/receipt.js";
+export { overallStatus, exitCodeFor } from "./verdict.js";
+export { formatReport } from "./format.js";
+export { runCommand } from "./spawn.js";

@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "command": ["node", "--test", "demo.test.js"],
+    "expect": "pass"
+  },
+  "diff": {
+    "files": [
+      {
+        "path": "src/app.js",
+        "op": "add",
+        "contains": "export function greet"
+      }
+    ]
+  },
+  "screenshot": {
+    "path": "shots/login.png",
+    "required": true
+  }
+}

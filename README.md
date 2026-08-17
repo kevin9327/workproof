@@ -5,49 +5,88 @@
 Coding agents write code, run commands, and say they are done.
 `workproof` is the one command that checks the claim: tests, diffs, screenshots, and a receipt you can replay.
 
-> Status: public from day one. The verifier is being built in this repo.
+If a cited claim cannot be reproduced, the process exits non-zero.
 
-## Why this exists
+> Status: v0.1 — first usable, fail-closed verifier. Node 18+, no install beyond cloning this repo.
 
-Agents are fast. They are also confident when they are wrong.
+## 30-second demo
 
-- Tests were “green” in the chat, not on disk
-- A file was “updated” and the diff is empty
-- A UI “works” and nobody opened a browser
-- A bug is “fixed” and the failing case was never rerun
+An agent claimed it edited `src/fixed.js`. The file is not on disk.
 
-`workproof` turns those claims into checks. If it cannot reproduce the result, it fails.
-
-```text
-$ workproof
-PASS  tests      41 passed
-PASS  diff       3 files changed, as claimed
-FAIL  screenshot login page still shows the old error
-PASS  receipt    sha256: 9f3c… replayable
-
-workproof: 3/4 checks passed
+```bash
+git clone https://github.com/kevin9327/workproof
+cd workproof
+node bin/workproof.js --workspace examples/caught
 ```
 
-## What it will do
+```text
+PASS tests      1 passed
+FAIL diff       claimed edit not on disk: src/fixed.js
+SKIP screenshot no capture at shots/login.png
+PASS receipt    wrote .workproof/receipt.json
+
+workproof: 2/4 checks passed
+workproof: FAIL — a cited claim could not be reproduced
+```
+
+A workspace whose claims are true:
+
+```bash
+node bin/workproof.js --workspace examples/clean
+```
+
+```text
+PASS tests      1 passed
+PASS diff       1 file matches claim
+PASS screenshot png capture at shots/login.png
+PASS receipt    wrote .workproof/receipt.json
+
+workproof: 4/4 checks passed
+```
+
+## What each check answers
 
 | Check | Question it answers |
 | --- | --- |
-| **tests** | Did the suite the agent cited actually run and pass here? |
-| **diff** | Do the files on disk match what the agent said it changed? |
-| **screenshot** | Does the UI state the agent described exist? |
-| **receipt** | Can a third party replay the same inputs and get the same verdict? |
+| **tests** | Did the suite the agent cited actually run here, with the claimed result? If the runner cannot be invoked, this is FAIL. |
+| **diff** | Do the files the agent said it changed exist on disk (and match optional `contains` / differ from `before`)? |
+| **screenshot** | Is there a real image capture? Missing + required → FAIL. Missing + `required: false` → SKIP. |
+| **receipt** | Was a replayable JSON record of the inputs and verdicts written and re-read? |
 
-One CLI. One exit code. One receipt.
+## Claim file
 
-## Install
+Put the agent's claims in `.workproof/claim.json` (or pass `--claim`):
 
-Not published yet. Star and watch this repo — the first runnable cut lands here.
+```json
+{
+  "tests": {
+    "command": ["node", "--test", "demo.test.js"],
+    "expect": "pass"
+  },
+  "diff": {
+    "files": [
+      { "path": "src/app.js", "op": "modify", "contains": "export function greet" }
+    ]
+  },
+  "screenshot": {
+    "path": "shots/login.png",
+    "required": false
+  }
+}
+```
+
+## Run
 
 ```bash
-# coming next
-# npx workproof
-# brew install workproof
+node bin/workproof.js [workspace] [--claim <path>] [--receipt <path>]
 ```
+
+| Exit | Meaning |
+| --- | --- |
+| 0 | Every cited claim reproduced (SKIP is allowed) |
+| 1 | A cited claim could not be reproduced |
+
+`npm test` runs the same check functions the CLI uses.
 
 ## License
 
