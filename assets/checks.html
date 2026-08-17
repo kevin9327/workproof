@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>workproof checks</title>
+  <style>
+    html, body { margin: 0; background: #07080a; }
+    .row {
+      width: 1080px;
+      margin: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+    .card {
+      background: #14171d;
+      border: 1px solid #2a2e36;
+      border-radius: 14px;
+      padding: 18px 16px 16px;
+      color: #e8eaed;
+      min-height: 148px;
+    }
+    .name { color: #c4a35a; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 8px; }
+    h3 { margin: 0 0 8px; font-size: 22px; }
+    p { margin: 0; color: #9aa0aa; font-size: 14px; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="card"><p class="name">01</p><h3>tests</h3><p>Run the suite the agent cited. Chat green is not enough.</p></div>
+    <div class="card"><p class="name">02</p><h3>diff</h3><p>Confirm claimed file edits exist on disk.</p></div>
+    <div class="card"><p class="name">03</p><h3>screenshot</h3><p>PASS, FAIL, or SKIP from a real capture.</p></div>
+    <div class="card"><p class="name">04</p><h3>receipt</h3><p>Write a replayable record of inputs and verdicts.</p></div>
+  </div>
+</body>
+</html>

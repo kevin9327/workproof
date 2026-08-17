@@ -1,7 +1,7 @@
 {
   "name": "workproof",
   "version": "0.1.0",
-  "description": "Prove what your coding agent just did. Tests, diffs, screenshots, receipts.",
+  "description": "After the agent finishes, prove the work actually happened.",
   "type": "module",
   "bin": {
     "workproof": "./bin/workproof.js"
@@ -17,8 +17,27 @@
     "node": ">=18"
   },
   "license": "MIT",
+  "homepage": "https://github.com/kevin9327/workproof",
+  "bugs": {
+    "url": "https://github.com/kevin9327/workproof/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevin9327/workproof.git"
-  }
+    "url": "git+https://github.com/kevin9327/workproof.git"
+  },
+  "keywords": [
+    "cli",
+    "agents",
+    "verification",
+    "testing",
+    "receipt",
+    "fail-closed"
+  ],
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ]
 }

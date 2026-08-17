@@ -6,5 +6,6 @@ export { checkDiff } from "./checks/diff.js";
 export { checkScreenshot } from "./checks/screenshot.js";
 export { checkReceipt, writeReceipt, readReceipt } from "./checks/receipt.js";
 export { overallStatus, exitCodeFor } from "./verdict.js";
-export { formatReport } from "./format.js";
+export { formatReport, formatJson } from "./format.js";
 export { runCommand } from "./spawn.js";
+export { initClaim, DEFAULT_CLAIM } from "./init.js";
